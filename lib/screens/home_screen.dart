@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const WebToonAppBar(
-        title: '대탈출',
+        title: '영상 모음',
       ),
       body: makeList(programs, context),
     );
@@ -30,6 +30,7 @@ class HomeScreen extends StatelessWidget {
 
   Column makeList(List<ProgramModel> snapshot, BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(
           height: 20,
@@ -54,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                 return ProgramWidgets(program: program);
               },
               separatorBuilder: (context, index) => const SizedBox(
-                width: 20,
+                width: 50,
               ),
             ),
           ),

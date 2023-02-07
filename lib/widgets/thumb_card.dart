@@ -26,7 +26,7 @@ class ThumbCard extends StatelessWidget {
             ),
           ],
         ),
-        height: 300,
+        height: 400,
         child: Image.asset('assets/images/${program.thumb}'),
       ),
     );
