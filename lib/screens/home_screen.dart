@@ -2,40 +2,33 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../models/webtoon_model.dart';
-import '../services/api_service.dart';
+import '../models/program_model.dart';
+import '../widgets/program_widgets.dart';
 import '../widgets/webtoon_appbar.dart';
-import '../widgets/webtoon_widgets.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
-  final Future<List<WebtoonModel>> webtoons = ApiService.getToons();
+  final List<ProgramModel> programs = [
+    ProgramModel(title: '대탈출 시즌1', thumb: 'big1.jpg', id: 'eoxkfcnf1'),
+    ProgramModel(title: '대탈출 시즌2', thumb: 'big2.jpg', id: 'eoxkfcnf2'),
+    ProgramModel(title: '대탈출 시즌3', thumb: 'big3.jpg', id: 'eoxkfcnf3'),
+    ProgramModel(title: '대탈출 시즌4', thumb: 'big4.jpg', id: 'eoxkfcnf4'),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const WebToonAppBar(
-        title: '오늘의 웹툰',
+        title: '대탈출',
       ),
-      body: FutureBuilder(
-        future: webtoons,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return makeList(snapshot, context);
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
+      body: makeList(programs, context),
     );
   }
 
-  Column makeList(
-      AsyncSnapshot<List<WebtoonModel>> snapshot, BuildContext context) {
+  Column makeList(List<ProgramModel> snapshot, BuildContext context) {
     return Column(
       children: [
         const SizedBox(
@@ -55,10 +48,10 @@ class HomeScreen extends StatelessWidget {
                 horizontal: 20,
                 vertical: 10,
               ),
-              itemCount: snapshot.data!.length,
+              itemCount: snapshot.length,
               itemBuilder: (context, index) {
-                var webtoon = snapshot.data![index];
-                return WebtoonWidgets(webtoon: webtoon);
+                var program = snapshot[index];
+                return ProgramWidgets(program: program);
               },
               separatorBuilder: (context, index) => const SizedBox(
                 width: 20,

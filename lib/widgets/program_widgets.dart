@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:toonflix/screens/detail_screen.dart';
-
-import '../models/webtoon_model.dart';
+import '../models/program_model.dart';
+import '../screens/detail_screen.dart';
 import 'thumb_card.dart';
 
-class WebtoonWidgets extends StatelessWidget {
-  const WebtoonWidgets({
+class ProgramWidgets extends StatelessWidget {
+  const ProgramWidgets({
     super.key,
-    required this.webtoon,
+    required this.program,
   });
 
-  final WebtoonModel webtoon;
+  final ProgramModel program;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class WebtoonWidgets extends StatelessWidget {
           context,
           CupertinoPageRoute(
             builder: (context) => DetailScreen(
-              webtoon: webtoon,
+              program: program,
             ),
             fullscreenDialog: true,
           ),
@@ -28,12 +27,12 @@ class WebtoonWidgets extends StatelessWidget {
       },
       child: Column(
         children: [
-          ThumbCard(webtoon: webtoon),
+          ThumbCard(program: program),
           const SizedBox(
             height: 10,
           ),
           Text(
-            webtoon.title,
+            program.title,
             style: const TextStyle(
               fontSize: 16,
             ),

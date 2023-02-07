@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../models/webtoon_model.dart';
+import '../models/program_model.dart';
 
 class ThumbCard extends StatelessWidget {
   const ThumbCard({
     super.key,
-    required this.webtoon,
+    required this.program,
   });
 
-  final WebtoonModel webtoon;
+  final ProgramModel program;
 
   @override
   Widget build(BuildContext context) {
     return Hero(
-      tag: webtoon.id,
+      tag: program.id,
       child: Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
@@ -26,8 +26,8 @@ class ThumbCard extends StatelessWidget {
             ),
           ],
         ),
-        width: 220,
-        child: Image.network(webtoon.thumb),
+        height: 300,
+        child: Image.asset('assets/images/${program.thumb}'),
       ),
     );
   }
