@@ -22,13 +22,14 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: const WebToonAppBar(
-        title: '영상 모음',
+        title: '대탈출 다시보기',
       ),
       body: makeList(programs, context),
     );
   }
 
   Column makeList(List<ProgramModel> snapshot, BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -43,21 +44,40 @@ class HomeScreen extends StatelessWidget {
                 PointerDeviceKind.mouse,
               },
             ),
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 10,
-              ),
-              itemCount: snapshot.length,
-              itemBuilder: (context, index) {
-                var program = snapshot[index];
-                return ProgramWidgets(program: program);
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                width: 50,
-              ),
-            ),
+            child: width > 959
+                ? Container(
+                    padding: const EdgeInsets.only(
+                      top: 10,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        for (var program in programs)
+                          ProgramWidgets(
+                            program: program,
+                            height: 300,
+                          ),
+                      ],
+                    ),
+                  )
+                : ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 10,
+                    ),
+                    itemCount: snapshot.length,
+                    itemBuilder: (context, index) {
+                      var program = snapshot[index];
+                      return ProgramWidgets(
+                        program: program,
+                        height: 300,
+                      );
+                    },
+                    separatorBuilder: (context, index) => const SizedBox(
+                      width: 30,
+                    ),
+                  ),
           ),
         ),
       ],

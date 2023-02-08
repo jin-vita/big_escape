@@ -16,14 +16,15 @@ class DetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     late ProgramDetailModel detail;
     late List<ProgramEpisodeModel> episodes;
-
+    const String explain =
+        '한 번 갇히면, 빠져나올 수 없다?! 극한의 탈출 버라이어티. 그들이 믿을 거라곤.. 오직 동료들뿐! 체력, 정신력, 근성, 재치, 두뇌.. 이 모든 것을 불살라 미스터리로 가득한 ‘초대형 밀실’을 탈출해야 한다! 에피소드마다 새롭게 구현되는 테마와 밀실 공간! 외부와 완벽히 차단된 이곳에서 빈틈투성이 여섯 멤버들은 과연 탈출 할 수 있을까?';
     if (program.id == 'eoxkfcnf1') {
       detail = ProgramDetailModel(
         title: '대탈출 시즌1',
-        about:
-            '한 번 갇히면, 빠져나올 수 없다?! 극한의 탈출 버라이어티. 그들이 믿을 거라곤.. 오직 동료들뿐! 외부와 완벽히 차단된 이곳에서 빈틈투성이 여섯 멤버들은 과연 탈출 할 수 있을까?',
+        about: explain,
         genre: '리얼리티',
         birth: '2018',
       );
@@ -33,9 +34,9 @@ class DetailScreen extends StatelessWidget {
         ProgramEpisodeModel(title: ' 3화 - 폐병원 - 1 ', id: '588'),
         ProgramEpisodeModel(title: ' 4화 - 폐병원 - 2 ', id: '589'),
         ProgramEpisodeModel(title: ' 5화 - 유전자 은행 - 1 ', id: '590'),
-        ProgramEpisodeModel(title: ' 6화 - 유전자 은행 - 2, 악령 감옥 - 1 ', id: '591'),
+        ProgramEpisodeModel(title: ' 6화 - 유전자 은행 - 2, 악령 - 1 ', id: '591'),
         ProgramEpisodeModel(title: ' 7화 - 악령 감옥 - 2 ', id: '592'),
-        ProgramEpisodeModel(title: ' 8화 - 악령감옥 - 3 ', id: '593'),
+        ProgramEpisodeModel(title: ' 8화 - 악령 감옥 - 3 ', id: '593'),
         ProgramEpisodeModel(title: ' 9화 - 벙커 - 1 ', id: '594'),
         ProgramEpisodeModel(title: ' 10화 - 벙커 - 2 ', id: '595'),
         ProgramEpisodeModel(title: ' 11화 - 태양여고 - 1 ', id: '596'),
@@ -45,8 +46,7 @@ class DetailScreen extends StatelessWidget {
     } else if (program.id == 'eoxkfcnf2') {
       detail = ProgramDetailModel(
         title: '대탈출 시즌2',
-        about:
-            '한 번 갇히면, 빠져나올 수 없다?! 극한의 탈출 버라이어티. 그들이 믿을 거라곤.. 오직 동료들뿐! 외부와 완벽히 차단된 이곳에서 빈틈투성이 여섯 멤버들은 과연 탈출 할 수 있을까?',
+        about: explain,
         genre: '리얼리티',
         birth: '2019',
       );
@@ -68,8 +68,7 @@ class DetailScreen extends StatelessWidget {
     } else if (program.id == 'eoxkfcnf3') {
       detail = ProgramDetailModel(
         title: '대탈출 시즌3',
-        about:
-            '한 번 갇히면, 빠져나올 수 없다?! 극한의 탈출 버라이어티. 그들이 믿을 거라곤.. 오직 동료들뿐! 외부와 완벽히 차단된 이곳에서 빈틈투성이 여섯 멤버들은 과연 탈출 할 수 있을까?',
+        about: explain,
         genre: '리얼리티',
         birth: '2020',
       );
@@ -91,8 +90,7 @@ class DetailScreen extends StatelessWidget {
     } else if (program.id == 'eoxkfcnf4') {
       detail = ProgramDetailModel(
         title: '대탈출 시즌4',
-        about:
-            '한 번 갇히면, 빠져나올 수 없다?! 극한의 탈출 버라이어티. 그들이 믿을 거라곤.. 오직 동료들뿐! 외부와 완벽히 차단된 이곳에서 빈틈투성이 여섯 멤버들은 과연 탈출 할 수 있을까?',
+        about: explain,
         genre: '리얼리티',
         birth: '2021',
       );
@@ -112,6 +110,7 @@ class DetailScreen extends StatelessWidget {
         ProgramEpisodeModel(title: '대탈출 시즌 4 13화', id: '12558'),
       ];
     }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: WebToonAppBar(
@@ -120,52 +119,118 @@ class DetailScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 30),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ThumbCard(program: program),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Container(),
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text('${detail.birth}  |  ${detail.genre}'),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    detail.about,
-                    style: const TextStyle(
-                      fontSize: 17,
+          child: width > 959
+              ? Column(
+                  children: [
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ThumbCard(
+                          program: program,
+                          height: 130,
+                        ),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('${detail.birth}  |  ${detail.genre}'),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                detail.about,
+                                style: const TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Column(
-                children: [
-                  for (var episode in episodes)
-                    Episode(
-                      episode: episode,
+                    const SizedBox(
+                      height: 30,
                     ),
-                ],
-              ),
-            ],
-          ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Flexible(
+                          child: Column(
+                            children: [
+                              for (int i = 0; i < 6; i++)
+                                Episode(
+                                  episode: episodes[i],
+                                ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 30,
+                        ),
+                        Flexible(
+                          child: Column(
+                            children: [
+                              for (int i = 6; i < episodes.length; i++)
+                                Episode(
+                                  episode: episodes[i],
+                                ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              : Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ThumbCard(
+                          program: program,
+                          height: 300,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '${detail.birth}  |  ${detail.genre}',
+                          style: const TextStyle(
+                            fontSize: 11,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          detail.about,
+                          style: const TextStyle(
+                            fontSize: 12,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Column(
+                      children: [
+                        for (var episode in episodes)
+                          Episode(
+                            episode: episode,
+                          ),
+                      ],
+                    ),
+                  ],
+                ),
         ),
       ),
     );

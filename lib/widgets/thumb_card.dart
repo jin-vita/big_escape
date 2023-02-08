@@ -6,9 +6,11 @@ class ThumbCard extends StatelessWidget {
   const ThumbCard({
     super.key,
     required this.program,
+    required this.height,
   });
 
   final ProgramModel program;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +28,7 @@ class ThumbCard extends StatelessWidget {
             ),
           ],
         ),
-        height: 400,
+        height: height,
         child: Image.asset('assets/images/${program.thumb}'),
       ),
     );

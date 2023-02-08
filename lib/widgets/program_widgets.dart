@@ -7,9 +7,11 @@ class ProgramWidgets extends StatelessWidget {
   const ProgramWidgets({
     super.key,
     required this.program,
+    required this.height,
   });
 
   final ProgramModel program;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,10 @@ class ProgramWidgets extends StatelessWidget {
       },
       child: Column(
         children: [
-          ThumbCard(program: program),
+          ThumbCard(
+            program: program,
+            height: height,
+          ),
           const SizedBox(
             height: 10,
           ),
